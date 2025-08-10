@@ -1,63 +1,79 @@
+
 # HTML Template Rules
 
-This document outlines the technology stack and specific library usage guidelines for a standard HTML template project. Adhering to these rules will help maintain consistency, improve collaboration, and ensure the code is clean, efficient, and easy to maintain.
+**🚨 IMPORTANT — PROJECT SCOPE**
+This is **always** a full **HTML + CSS + TailwindCSS + JavaScript (ES6+)** project. No TypeScript, no other frameworks.
+If you include external libraries or assets, they **must** be linked via a **CDN** — never through npm, package managers, or build tools.
 
 ## Tech Stack Overview
 
 The template is built using the following core technologies:
 
-* **Markup**: HTML5. All HTML files, including the main index.html, are located in the src directory.
+* **Markup**: HTML5. All HTML files, including the main `index.html`, are located in the `src` directory.
 
-* **Styling**: Tailwind CSS, included via a CDN, for a utility-first approach. Custom CSS is stored in the `styles` folder.
+* **Styling**: Tailwind CSS (via CDN) for a utility-first approach. Custom CSS is stored in the `styles` folder.
 
-* **Scripting**: JavaScript (ES6+), for all dynamic functionality. All JavaScript files are stored in the `scripts` folder.
+* **Scripting**: **JavaScript (ES6+) only** — absolutely no TypeScript. All JavaScript files are stored in the `scripts` folder.
 
-* **Icons**: Lucide Icons, included via a CDN, which is a comprehensive library of lightweight SVG icons.
+* **Icons**: Lucide Icons (via CDN), a comprehensive library of lightweight SVG icons.
 
 * **Animations**: Tailwind's animation capabilities and native CSS animations.
 
 ## Library Usage Guidelines
 
-To ensure consistency and a streamlined workflow, please follow these guidelines:
+To ensure consistency and a streamlined workflow, follow these guidelines:
 
-1.  **UI Components**:
+1. **UI Components**:
 
-    * **Primary Choice**: Create all UI elements using semantic HTML and style them with Tailwind CSS utility classes.
+   * **Primary Choice**: Create all UI elements using semantic HTML and style them with Tailwind CSS utility classes.
 
-    * **Avoid**: Introducing heavy, third-party UI component libraries (e.g., Bootstrap, Materialize) that may conflict with Tailwind CSS.
+   * **Component Scripting**: All interactive or dynamic UI components must be implemented in **JavaScript (ES6+)** — no TypeScript.
 
-2.  **Styling**:
+   * **CDN Requirement**: Any additional UI-related libraries must be included **via CDN** in `index.html`.
 
-    * **Primary Choice**: Exclusively use Tailwind CSS utility classes for styling elements directly in the HTML. For global styles, base styling, or complex custom styles that are not possible with Tailwind, use a dedicated stylesheet within the `src/styles` folder.
+   * **Avoid**: Heavy third-party UI frameworks (e.g., Bootstrap, Materialize) that conflict with Tailwind CSS.
 
-    * **Avoid**: Using CSS-in-JS libraries or embedding extensive `<style>` blocks within the HTML body.
+2. **Styling**:
 
-3.  **Icons**:
+   * **Primary Choice**: Exclusively use Tailwind CSS utility classes.
 
-    * **Primary Choice**: Use icons from the **Lucide Icons** library. You can include them as inline SVGs directly in your HTML or use the library's JavaScript to dynamically create them, as seen in the provided template.
+   * For global styles, base styling, or complex custom styles, use a dedicated stylesheet within the `src/styles` folder.
 
-4.  **JavaScript & Logic**:
+   * **Avoid**: CSS-in-JS libraries or embedding extensive `<style>` blocks within HTML.
 
-    * **Primary Choice**: Write all new code using modern **ES6+ JavaScript**. All JavaScript files should be stored in the `src/scripts` folder.
+3. **Icons**:
 
-    * **Modularity**: Organize your JavaScript into separate, well-commented files and link them using `<script type="module">` for a clean, modular structure.
+   * **Primary Choice**: Use icons from the **Lucide Icons** library via CDN.
+   * You may include them inline as SVG or generate them dynamically with JavaScript.
 
-    * **Avoid**: Writing large, monolithic JavaScript files.
+4. **JavaScript & Logic**:
 
-5.  **Forms**:
+   * **Primary Choice**: Write all code in modern **ES6+ JavaScript** — never in TypeScript.
 
-    * **Management**: Use native HTML form elements (`<form>`, `<input>`, `<button>`) and handle all logic and validation with **vanilla JavaScript**.
+   * **CDN Requirement**: All external JavaScript libraries must be included via CDN.
 
-    * **Avoid**: Using complex form validation libraries unless a specific need arises.
+   * **Modularity**: Organize code into separate, well-commented files. Use `<script type="module">` for imports.
 
-6.  **Data Fetching**:
+   * **Avoid**: Large, monolithic JS files.
 
-    * **Client-Side**: Use the native **`fetch` API** for all client-side data retrieval from an API.
+5. **Forms**:
 
-7.  **Animations**:
+   * **Management**: Use native HTML form elements (`<form>`, `<input>`, `<button>`) and handle all logic/validation with vanilla JavaScript.
 
-    * Use **Tailwind's animation classes** (`animate-*`) for simple, pre-built animations and native **CSS transitions and keyframe animations** for more complex effects.
+   * **Avoid**: Large form libraries unless a specific requirement exists — and then only via CDN.
 
-8.  **Utility Functions**:
+6. **Data Fetching**:
 
-    * General-purpose helper functions should be placed in a separate JavaScript file within the `scripts` folder (e.g., `src/scripts/utils.js`) to promote reusability.
+   * **Client-Side**: Use the native **`fetch` API** for all client-side data retrieval.
+
+7. **Animations**:
+
+   * Use **Tailwind animation classes** (`animate-*`) for simple effects.
+   * Use native **CSS transitions** or **keyframes** for advanced animations.
+
+8. **Utility Functions**:
+
+   * Place general-purpose helper functions in a separate file (e.g., `src/scripts/utils.js`) for reusability.
+
+---
+
